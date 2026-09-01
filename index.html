@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>서수원 에피트 센트럴마크 중도금 계산기</title>
+<style>
+  *{box-sizing:border-box}
+  body{
+    margin:0;background:#f5f6f8;color:#172033;
+    font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+  }
+  .wrap{max-width:760px;margin:0 auto;padding:18px 14px 40px}
+  .header{
+    background:linear-gradient(135deg,#0b2437,#173f52);
+    color:#fff;border-radius:18px;padding:24px 22px;margin-bottom:14px;
+  }
+  .eyebrow{font-size:12px;letter-spacing:2px;opacity:.75;margin-bottom:8px}
+  h1{font-size:24px;margin:0 0 7px;font-weight:800}
+  .sub{font-size:13px;opacity:.82}
+  .card{
+    background:#fff;border-radius:16px;padding:18px;margin-bottom:12px;
+    box-shadow:0 3px 16px rgba(20,30,45,.06);
+  }
+  .title{font-size:16px;font-weight:800;margin-bottom:15px}
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+  label{font-size:12px;color:#687386;display:block;margin-bottom:6px}
+  input,select{
+    width:100%;border:1px solid #dfe3e8;border-radius:10px;padding:11px 12px;
+    font-size:15px;background:#fff;color:#172033;outline:none;
+  }
+  input:focus,select:focus{border-color:#173f52}
+  .result{
+    display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:12px
+  }
+  .metric{background:#f6f8fa;border-radius:12px;padding:13px}
+  .metric small{display:block;color:#758094;font-size:11px;margin-bottom:6px}
+  .metric strong{font-size:16px}
+  .metric.main{background:#edf5f3}
+  .metric.main strong{color:#0d5a4b}
+  table{width:100%;border-collapse:collapse;font-size:13px}
+  th{background:#f5f7f9;color:#566174;font-weight:700}
+  th,td{padding:11px 8px;border-bottom:1px solid #edf0f3;text-align:center}
+  td:first-child,th:first-child{text-align:left}
+  .money{font-weight:700;white-space:nowrap}
+  .interest{font-weight:700}
+  .total{
+    margin-top:14px;padding:16px;border-radius:12px;background:#102d43;color:#fff;
+    display:flex;justify-content:space-between;align-items:center
+  }
+  .total span{font-size:13px;opacity:.8}
+  .total strong{font-size:21px}
+  .notice{
+    background:#fff9e9;border:1px solid #f0dfad;color:#70591f;
+    border-radius:12px;padding:13px;font-size:12px;line-height:1.6;margin-top:12px
+  }
+  .muted{font-size:11px;color:#8992a1;line-height:1.55;margin-top:10px}
+  .btn{
+    width:100%;border:0;border-radius:11px;padding:12px;background:#173f52;color:#fff;
+    font-size:14px;font-weight:700;cursor:pointer;margin-top:10px
+  }
+  .footer{text-align:center;color:#98a0ad;font-size:11px;margin-top:18px}
+  @media(max-width:560px){
+    .grid{grid-template-columns:1fr 1fr}
+    .result{grid-template-columns:1fr}
+    h1{font-size:21px}
+    table{font-size:12px}
+    th,td{padding:9px 5px}
+    .money{font-size:12px}
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <section class="header">
+    <div class="eyebrow">SUWON EFETE CENTRAL MARK</div>
+    <h1>중도금 이자 계산기</h1>
+    <div class="sub">이자후불제 · 집단대출 연 4.55% 기준</div>
+  </section>
+
+  <section class="card">
+    <div class="title">계산 조건</div>
+    <div class="grid">
+      <div>
+        <label>분양가</label>
+        <input id="price" type="number" value="895000000" step="100000">
+      </div>
+      <div>
+        <label>계약금 비율</label>
+        <input id="contractRate" type="number" value="5" step="0.1">
+      </div>
+      <div>
+        <label>중도금 비율</label>
+        <input id="middleRate" type="number" value="60" step="0.1">
+      </div>
+      <div>
+        <label>중도금 회차</label>
+        <input id="rounds" type="number" value="6" min="1" max="10">
+      </div>
+      <div>
+        <label>집단대출 금리 (연 %)</label>
+        <input id="rate" type="number" value="4.55" step="0.01">
+      </div>
+      <div>
+        <label>잔금/입주 기준일</label>
+        <input id="endDate" type="date" value="2028-09-01">
+      </div>
+    </div>
+
+    <div class="result">
+      <div class="metric main"><small>계약금 5%</small><strong id="contractAmt">-</strong></div>
+      <div class="metric"><small>중도금 총액</small><strong id="middleAmt">-</strong></div>
+      <div class="metric"><small>잔금 비율</small><strong id="balanceRate">-</strong></div>
+    </div>
+  </section>
+
+  <section class="card">
+    <div class="title">중도금 납부일</div>
+    <div id="dates" class="grid"></div>
+    <button class="btn" onclick="calculate()">계산하기</button>
+  </section>
+
+  <section class="card">
+    <div class="title">회차별 예상 이자</div>
+    <table>
+      <thead>
+        <tr>
+          <th>회차</th><th>납부일</th><th>대출금</th><th>예상 이자</th>
+        </tr>
+      </thead>
+      <tbody id="rows"></tbody>
+    </table>
+    <div class="total">
+      <span>중도금 예상 이자 합계</span>
+      <strong id="totalInterest">-</strong>
+    </div>
+    <div class="notice">
+      <b>※ 이자후불제 계산 방식</b><br>
+      각 중도금 대출 실행일의 대출잔액을 기준으로 연 4.55%를 일할 계산하여
+      입력한 잔금/입주 기준일까지의 예상 이자를 산출합니다.
+    </div>
+    <div class="muted">
+      실제 청구 이자는 은행의 대출 실행일, 실제 상환일, 이자 계산 방식,
+      휴일 처리, 금리 변동 및 대출 약정 조건에 따라 달라질 수 있습니다.
+      본 계산 결과는 참고용 예상 금액입니다.
+    </div>
+  </section>
+
+  <div class="footer">서수원 에피트 센트럴마크 입주예정자용 계산기</div>
+</div>
+
+<script>
+const defaultDates = [
+  "2026-09-28","2026-11-25","2027-03-25",
+  "2027-08-25","2027-11-25","2028-02-25"
+];
+
+function won(n){
+  return Math.round(n).toLocaleString('ko-KR') + '원';
+}
+function dateDiff(a,b){
+  const d1 = new Date(a+"T00:00:00");
+  const d2 = new Date(b+"T00:00:00");
+  return Math.max(0, Math.round((d2-d1)/86400000));
+}
+function renderDates(){
+  const n = Math.max(1, Math.min(10, Number(document.getElementById('rounds').value)||6));
+  const box = document.getElementById('dates');
+  box.innerHTML='';
+  for(let i=0;i<n;i++){
+    const value = defaultDates[i] || "";
+    box.innerHTML += `
+      <div>
+        <label>${i+1}차 중도금 납부일</label>
+        <input class="dateInput" type="date" value="${value}">
+      </div>`;
+  }
+}
+function calculate(){
+  const price = Number(document.getElementById('price').value)||0;
+  const contractRate = Number(document.getElementById('contractRate').value)||0;
+  const middleRate = Number(document.getElementById('middleRate').value)||0;
+  const rounds = Math.max(1, Math.min(10, Number(document.getElementById('rounds').value)||6));
+  const rate = Number(document.getElementById('rate').value)||0;
+  const end = document.getElementById('endDate').value;
+
+  const contract = price*contractRate/100;
+  const middle = price*middleRate/100;
+  const each = middle/rounds;
+  const balanceRate = 100-contractRate-middleRate;
+
+  document.getElementById('contractAmt').textContent=won(contract);
+  document.getElementById('middleAmt').textContent=won(middle);
+  document.getElementById('balanceRate').textContent=balanceRate.toFixed(1).replace('.0','')+'%';
+
+  const inputs = [...document.querySelectorAll('.dateInput')].slice(0,rounds);
+  let total=0, html='';
+  inputs.forEach((el,i)=>{
+    const d=el.value;
+    let interest=0, days=0;
+    if(d && end){
+      days=dateDiff(d,end);
+      interest=each*(rate/100)*days/365;
+    }
+    total += interest;
+    html += `<tr>
+      <td>${i+1}차</td>
+      <td>${d || '-'}</td>
+      <td class="money">${won(each)}</td>
+      <td class="interest">${won(interest)}</td>
+    </tr>`;
+  });
+  document.getElementById('rows').innerHTML=html;
+  document.getElementById('totalInterest').textContent=won(total);
+}
+document.getElementById('rounds').addEventListener('change',()=>{renderDates();calculate()});
+document.querySelectorAll('input').forEach(el=>el.addEventListener('input',calculate));
+renderDates();
+calculate();
+</script>
+</body>
+</html>
