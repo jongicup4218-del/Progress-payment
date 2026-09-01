@@ -14,8 +14,8 @@ body{
   margin:0;
   background:#f5f6f8;
   color:#172033;
-  font-family:-apple-system,BlinkMacSystemFont,
-  "Noto Sans KR","Malgun Gothic",Arial,sans-serif;
+  font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR",
+  "Malgun Gothic",Arial,sans-serif;
 }
 
 .wrap{
@@ -77,8 +77,7 @@ label{
   margin-bottom:6px;
 }
 
-input,
-select{
+input,select{
   width:100%;
   border:1px solid #dfe3e8;
   border-radius:10px;
@@ -89,7 +88,8 @@ select{
   outline:none;
 }
 
-input:focus{
+input:focus,
+select:focus{
   border-color:#173f52;
 }
 
@@ -125,14 +125,12 @@ input:focus{
   color:#0d5a4b;
 }
 
-
-/* 회차별 카드 */
-
+/* 회차 입력 */
 .round-card{
-  border:1px solid #e1e6eb;
-  border-radius:14px;
+  border:1px solid #e4e8ed;
+  border-radius:13px;
   padding:14px;
-  margin-bottom:12px;
+  margin-bottom:10px;
   background:#fff;
 }
 
@@ -144,24 +142,23 @@ input:focus{
 }
 
 .round-title{
-  font-size:15px;
+  font-size:14px;
   font-weight:800;
 }
 
-.round-interest{
+.round-loan{
   font-size:12px;
-  color:#0d5a4b;
-  font-weight:700;
+  color:#687386;
 }
 
 .round-grid{
   display:grid;
-  grid-template-columns:1fr 1fr;
+  grid-template-columns:1.2fr 1fr 1fr;
   gap:10px;
 }
 
 .repayment-area{
-  margin-top:13px;
+  margin-top:12px;
   padding-top:12px;
   border-top:1px dashed #dfe3e8;
 }
@@ -170,18 +167,21 @@ input:focus{
   display:flex;
   justify-content:space-between;
   align-items:center;
-  font-size:12px;
-  font-weight:700;
-  color:#566174;
   margin-bottom:8px;
 }
 
+.repayment-title span{
+  font-size:12px;
+  font-weight:700;
+  color:#536071;
+}
+
 .add-btn{
-  border:0;
+  border:1px solid #173f52;
+  background:#fff;
+  color:#173f52;
   border-radius:8px;
-  padding:6px 10px;
-  background:#173f52;
-  color:#fff;
+  padding:6px 9px;
   font-size:11px;
   font-weight:700;
   cursor:pointer;
@@ -192,34 +192,27 @@ input:focus{
   grid-template-columns:1fr 1fr auto;
   gap:7px;
   margin-bottom:7px;
+  align-items:center;
 }
 
-.remove-btn{
-  width:38px;
-  border:1px solid #e0e4e8;
-  background:#fff;
+.delete-btn{
+  width:34px;
+  height:38px;
+  border:0;
   border-radius:8px;
-  color:#9a4d4d;
+  background:#f3f4f6;
+  color:#8b929d;
   cursor:pointer;
-  font-size:14px;
+  font-size:16px;
 }
 
-.round-summary{
-  margin-top:10px;
-  background:#f6f8fa;
-  border-radius:10px;
-  padding:10px 12px;
-  font-size:12px;
-  line-height:1.7;
+.repayment-empty{
+  color:#9aa2ad;
+  font-size:11px;
+  padding:4px 0;
 }
 
-.round-summary b{
-  color:#172033;
-}
-
-
-/* 테이블 */
-
+/* 표 */
 table{
   width:100%;
   border-collapse:collapse;
@@ -232,8 +225,7 @@ th{
   font-weight:700;
 }
 
-th,
-td{
+th,td{
   padding:11px 8px;
   border-bottom:1px solid #edf0f3;
   text-align:center;
@@ -274,9 +266,6 @@ th:first-child{
   font-size:21px;
 }
 
-
-/* 안내문 */
-
 .notice{
   background:#fff9e9;
   border:1px solid #f0dfad;
@@ -284,20 +273,8 @@ th:first-child{
   border-radius:12px;
   padding:13px;
   font-size:12px;
-  line-height:1.65;
+  line-height:1.6;
   margin-top:12px;
-}
-
-.notice.blue{
-  background:#eef6fb;
-  border-color:#cfe2ef;
-  color:#28526b;
-}
-
-.notice.red{
-  background:#fff4f4;
-  border-color:#efd0d0;
-  color:#754040;
 }
 
 .muted{
@@ -320,8 +297,8 @@ th:first-child{
   margin-top:10px;
 }
 
-.btn:hover{
-  opacity:.92;
+.pdf-btn{
+  background:#0d5a4b;
 }
 
 .footer{
@@ -331,23 +308,19 @@ th:first-child{
   margin-top:18px;
 }
 
+/* 인쇄용 중도상환 내역 */
+.repayment-summary{
+  font-size:10px;
+  line-height:1.4;
+  text-align:left;
+}
+
+.repayment-summary div{
+  margin-bottom:2px;
+}
 
 /* 모바일 */
-
 @media(max-width:560px){
-
-  .wrap{
-    padding:12px 10px 30px;
-  }
-
-  .header{
-    padding:20px 18px;
-    border-radius:15px;
-  }
-
-  h1{
-    font-size:21px;
-  }
 
   .grid{
     grid-template-columns:1fr 1fr;
@@ -357,30 +330,248 @@ th:first-child{
     grid-template-columns:1fr;
   }
 
+  h1{
+    font-size:21px;
+  }
+
+  table{
+    font-size:12px;
+  }
+
+  th,td{
+    padding:9px 5px;
+  }
+
+  .money{
+    font-size:12px;
+  }
+
   .round-grid{
     grid-template-columns:1fr 1fr;
   }
 
+  .round-grid > div:first-child{
+    grid-column:1 / -1;
+  }
+}
+
+
+/* =====================================================
+   A4 세로 1페이지 출력
+   ===================================================== */
+
+@page{
+  size:A4 portrait;
+  margin:7mm;
+}
+
+@media print{
+
+  html,
+  body{
+    width:210mm;
+    height:297mm;
+    background:#fff !important;
+  }
+
+  body{
+    -webkit-print-color-adjust:exact !important;
+    print-color-adjust:exact !important;
+  }
+
+  .wrap{
+    width:196mm;
+    max-width:none;
+    margin:0;
+    padding:0;
+  }
+
+  .header{
+    border-radius:8px;
+    padding:9px 12px;
+    margin-bottom:6px;
+  }
+
+  .eyebrow{
+    font-size:7px;
+    margin-bottom:3px;
+  }
+
+  h1{
+    font-size:15px;
+    margin-bottom:3px;
+  }
+
+  .sub{
+    font-size:8px;
+  }
+
+  .card{
+    border-radius:7px;
+    padding:7px;
+    margin-bottom:6px;
+    box-shadow:none;
+    border:1px solid #e5e8ec;
+  }
+
+  .title{
+    font-size:10px;
+    margin-bottom:6px;
+  }
+
+  label{
+    font-size:7px;
+    margin-bottom:3px;
+  }
+
+  input,
+  select{
+    padding:4px 5px;
+    font-size:9px;
+    border-radius:5px;
+  }
+
+  .grid{
+    gap:5px;
+  }
+
+  .result{
+    gap:5px;
+    margin-top:5px;
+  }
+
+  .metric{
+    border-radius:6px;
+    padding:6px;
+  }
+
+  .metric small{
+    font-size:7px;
+    margin-bottom:2px;
+  }
+
+  .metric strong{
+    font-size:10px;
+  }
+
+  .round-card{
+    padding:6px;
+    margin-bottom:5px;
+    border-radius:6px;
+  }
+
+  .round-header{
+    margin-bottom:5px;
+  }
+
+  .round-title{
+    font-size:9px;
+  }
+
+  .round-loan{
+    font-size:7px;
+  }
+
+  .round-grid{
+    gap:5px;
+  }
+
+  .repayment-area{
+    margin-top:5px;
+    padding-top:5px;
+  }
+
+  .repayment-title{
+    margin-bottom:3px;
+  }
+
+  .repayment-title span{
+    font-size:7px;
+  }
+
+  .add-btn,
+  .delete-btn{
+    display:none !important;
+  }
+
   .repayment-row{
-    grid-template-columns:1fr 1fr auto;
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:4px;
+    margin-bottom:3px;
   }
 
   table{
-    font-size:11px;
+    font-size:8px;
   }
 
   th,
   td{
-    padding:9px 4px;
+    padding:4px 3px;
   }
 
   .money{
-    font-size:11px;
+    font-size:8px;
   }
 
-  .round-card{
-    padding:12px;
+  .interest{
+    font-size:8px;
   }
+
+  .total{
+    margin-top:6px;
+    padding:7px;
+    border-radius:6px;
+  }
+
+  .total span{
+    font-size:8px;
+  }
+
+  .total strong{
+    font-size:13px;
+  }
+
+  .notice{
+    padding:6px;
+    margin-top:5px;
+    border-radius:6px;
+    font-size:7px;
+    line-height:1.4;
+  }
+
+  .muted{
+    font-size:6.5px;
+    line-height:1.35;
+    margin-top:4px;
+  }
+
+  .footer{
+    font-size:6px;
+    margin-top:5px;
+  }
+
+  .screen-only{
+    display:none !important;
+  }
+
+  /*
+    인쇄용에서는 화면의 긴 중도상환 입력창 대신
+    회차별 요약표를 표시
+  */
+  .print-only{
+    display:block !important;
+  }
+
+  /* 1페이지 강제 */
+  .page{
+    page-break-inside:avoid;
+    break-inside:avoid;
+  }
+}
+
+.print-only{
+  display:none;
 }
 </style>
 </head>
@@ -390,92 +581,76 @@ th:first-child{
 
 <div class="wrap">
 
-  <!-- 헤더 -->
-
+  <!-- HEADER -->
   <section class="header">
-
-    <div class="eyebrow">
-      SUWON EFETE CENTRAL MARK
-    </div>
-
-    <h1>
-      중도금 이자 계산기
-    </h1>
-
+    <div class="eyebrow">SUWON EFETE CENTRAL MARK</div>
+    <h1>중도금 이자 계산기</h1>
     <div class="sub">
-      이자후불제 · 회차별 대출금리 적용
+      이자후불제 · 중도금 집단대출 금리 회차별 입력
     </div>
-
   </section>
 
 
   <!-- 기본 조건 -->
+  <section class="card page">
 
-  <section class="card">
-
-    <div class="title">
-      계산 조건
-    </div>
+    <div class="title">계산 조건</div>
 
     <div class="grid">
 
       <div>
         <label>분양가</label>
-
         <input
           id="price"
           type="number"
-          placeholder="분양가를 입력하세요"
-          step="100000"
-        >
+          value=""
+          placeholder="예: 895000000"
+          step="100000">
       </div>
-
 
       <div>
         <label>계약금 비율 (%)</label>
-
         <input
           id="contractRate"
           type="number"
           value="5"
-          step="0.1"
-        >
+          step="0.1">
       </div>
-
 
       <div>
         <label>중도금 비율 (%)</label>
-
         <input
           id="middleRate"
           type="number"
           value="60"
-          step="0.1"
-        >
+          step="0.1">
       </div>
-
 
       <div>
         <label>중도금 회차</label>
-
         <input
           id="rounds"
           type="number"
           value="6"
           min="1"
-          max="10"
-        >
+          max="10">
       </div>
 
+      <div>
+        <label>중도상환수수료율 (%)</label>
+        <input
+          id="prepayFeeRate"
+          type="number"
+          value="0"
+          step="0.01">
+      </div>
 
       <div>
         <label>잔금 / 입주 기준일</label>
-
         <input
           id="endDate"
           type="date"
-          value="2028-09-01"
-        >
+          value="2028-09-01">
       </div>
 
     </div>
@@ -484,41 +659,18 @@ th:first-child{
     <div class="result">
 
       <div class="metric main">
-
-        <small>
-          계약금
-        </small>
-
-        <strong id="contractAmt">
-          -
-        </strong>
-
+        <small>계약금</small>
+        <strong id="contractAmt">-</strong>
       </div>
 
-
       <div class="metric">
-
-        <small>
-          중도금 총액
-        </small>
-
-        <strong id="middleAmt">
-          -
-        </strong>
-
+        <small>중도금 총액</small>
+        <strong id="middleAmt">-</strong>
       </div>
 
-
       <div class="metric">
-
-        <small>
-          잔금 비율
-        </small>
-
-        <strong id="balanceRate">
-          -
-        </strong>
-
+        <small>잔금 비율</small>
+        <strong id="balanceRate">-</strong>
       </div>
 
     </div>
@@ -527,19 +679,15 @@ th:first-child{
 
 
   <!-- 회차별 입력 -->
-
   <section class="card">
 
-    <div class="title">
-      회차별 대출 및 중도상환
-    </div>
+    <div class="title">회차별 대출 및 중도상환</div>
 
-    <div id="roundsContainer"></div>
+    <div id="roundsBox"></div>
 
     <button
-      class="btn"
-      onclick="calculate()"
-    >
+      class="btn screen-only"
+      onclick="calculate()">
       계산하기
     </button>
 
@@ -547,28 +695,22 @@ th:first-child{
 
 
   <!-- 결과 -->
+  <section class="card page">
 
-  <section class="card">
-
-    <div class="title">
-      회차별 예상 이자
-    </div>
-
+    <div class="title">회차별 예상 이자</div>
 
     <table>
 
       <thead>
-
         <tr>
           <th>회차</th>
           <th>대출일</th>
           <th>금리</th>
           <th>대출금</th>
+          <th>상환액</th>
           <th>예상이자</th>
         </tr>
-
       </thead>
-
 
       <tbody id="rows"></tbody>
 
@@ -577,71 +719,30 @@ th:first-child{
 
     <div class="total">
 
-      <span>
-        중도금 예상 이자 합계
-      </span>
+      <span>중도금 예상 이자 합계</span>
 
-      <strong id="totalInterest">
-        -
-      </strong>
+      <strong id="totalInterest">-</strong>
 
     </div>
 
-
-    <!-- 이자 계산 안내 -->
 
     <div class="notice">
 
-      <b>※ 이자후불제 계산 방식</b>
-      <br>
+      <b>※ 이자후불제 계산 방식</b><br>
 
-      각 회차의 중도금 대출 실행일부터
-      잔금/입주 기준일까지의 기간을 기준으로
-      일할 계산합니다.
+      각 중도금 회차의 실제 대출 실행일부터 잔금/입주 기준일까지
+      대출잔액에 대해 해당 회차의 입력 금리를 적용하여 일할 계산합니다.
 
-      <br>
+      <br><br>
 
-      <b>
-        중도상환이 있는 경우 상환일을 기준으로
-        대출 원금을 차감하여 이후 발생하는 이자를
-        다시 계산합니다.
-      </b>
+      중도상환을 입력하면 <b>상환일 당일부터 해당 회차의 대출잔액이 감소</b>하여
+      이후 발생하는 이자가 자동으로 줄어듭니다.
 
-    </div>
+      <br><br>
 
-
-    <!-- 금리 안내 -->
-
-    <div class="notice blue">
-
-      <b>※ 회차별 대출금리</b>
-      <br>
-
-      중도금 대출금리는 기준금리 변동 등에 따라
-      회차별로 달라질 수 있습니다.
-
-      <br>
-
-      따라서 각 회차의 실제 적용금리를
-      직접 입력하여 계산하도록 구성되어 있습니다.
-
-    </div>
-
-
-    <!-- 중도상환수수료 -->
-
-    <div class="notice red">
-
-      <b>※ 중도상환수수료 안내</b>
-      <br>
-
-      수분양자 개별자금으로 중도상환하는 경우
-      중도상환수수료는 면제되는 조건을 기준으로 합니다.
-
-      <br>
-
-      실제 중도상환수수료 적용 여부 및 조건은
-      대출 약정서와 금융기관의 실제 안내를 확인하시기 바랍니다.
+      <b>※ 중도상환수수료</b><br>
+      아래 계산기의 수수료율은 사용자가 직접 입력할 수 있으며,
+      0%로 입력하면 수수료는 계산하지 않습니다.
 
     </div>
 
@@ -650,23 +751,46 @@ th:first-child{
 
       실제 청구 이자는 은행의 실제 대출 실행일,
       실제 상환일, 이자 계산 방식, 휴일 처리,
-      금리 변동 및 대출 약정 조건 등에 따라
-      달라질 수 있습니다.
-
-      <br><br>
-
-      본 계산 결과는 입주예정자의 자금계획 수립을 위한
-      참고용 예상 금액입니다.
+      금리 변동 및 대출 약정 조건에 따라 달라질 수 있습니다.
+      본 계산 결과는 참고용 예상 금액입니다.
 
     </div>
 
   </section>
 
 
+  <!-- 인쇄용 중도상환 요약 -->
+  <section class="card print-only">
+
+    <div class="title">중도상환 내역</div>
+
+    <table>
+
+      <thead>
+        <tr>
+          <th>회차</th>
+          <th>중도상환 내역</th>
+          <th>상환 후 잔액</th>
+        </tr>
+      </thead>
+
+      <tbody id="printRepaymentRows"></tbody>
+
+    </table>
+
+  </section>
+
+
+  <!-- PDF 버튼 -->
+  <button
+    class="btn pdf-btn screen-only"
+    onclick="printPDF()">
+    📄 A4 1페이지 PDF / 인쇄
+  </button>
+
+
   <div class="footer">
-
     서수원 에피트 센트럴마크 입주예정자용 계산기
-
   </div>
 
 </div>
@@ -674,9 +798,9 @@ th:first-child{
 
 <script>
 
-/* =========================================================
+/* =====================================================
    기본 중도금 납부일
-========================================================= */
+===================================================== */
 
 const defaultDates = [
 
@@ -690,13 +814,13 @@ const defaultDates = [
 ];
 
 
-/* =========================================================
+/* =====================================================
    금액 표시
-========================================================= */
+===================================================== */
 
 function won(n){
 
-  if(!Number.isFinite(n)){
+  if(!isFinite(n)){
     return "0원";
   }
 
@@ -705,39 +829,97 @@ function won(n){
 }
 
 
-/* =========================================================
+/* =====================================================
    날짜 차이
-========================================================= */
+===================================================== */
 
 function dateDiff(a,b){
 
-  if(!a || !b){
-    return 0;
-  }
-
-  const d1 =
-    new Date(a + "T00:00:00");
-
-  const d2 =
-    new Date(b + "T00:00:00");
+  const d1 = new Date(a + "T00:00:00");
+  const d2 = new Date(b + "T00:00:00");
 
   return Math.max(
     0,
-    Math.round(
-      (d2 - d1) / 86400000
-    )
+    Math.round((d2-d1)/86400000)
   );
 
 }
 
 
-/* =========================================================
-   회차 입력 화면 생성
-========================================================= */
+/* =====================================================
+   날짜 표시
+===================================================== */
+
+function formatDate(date){
+
+  if(!date){
+    return "-";
+  }
+
+  return date.replaceAll("-",".");
+
+}
+
+
+/* =====================================================
+   회차 데이터
+===================================================== */
+
+function getRoundData(){
+
+  const cards = [
+    ...document.querySelectorAll(".round-card")
+  ];
+
+  return cards.map((card,index)=>{
+
+    const date =
+      card.querySelector(".round-date").value;
+
+    const rate =
+      Number(
+        card.querySelector(".round-rate").value
+      ) || 0;
+
+    const repayments = [
+      ...card.querySelectorAll(".repayment-row")
+    ].map(row=>{
+
+      return {
+
+        date:
+          row.querySelector(".repayment-date").value,
+
+        amount:
+          Number(
+            row.querySelector(".repayment-amount").value
+          ) || 0
+
+      };
+
+    });
+
+    return {
+
+      index:index+1,
+      date:date,
+      rate:rate,
+      repayments:repayments
+
+    };
+
+  });
+
+}
+
+
+/* =====================================================
+   회차 입력창 생성
+===================================================== */
 
 function renderRounds(){
 
-  const n =
+  const rounds =
     Math.max(
       1,
       Math.min(
@@ -748,26 +930,21 @@ function renderRounds(){
       )
     );
 
+  const box =
+    document.getElementById("roundsBox");
 
-  const container =
-    document.getElementById("roundsContainer");
-
-
-  container.innerHTML = "";
+  box.innerHTML = "";
 
 
-  for(let i=0;i<n;i++){
+  for(let i=0;i<rounds;i++){
 
     const date =
       defaultDates[i] || "";
 
 
-    const html = `
+    box.innerHTML += `
 
-      <div
-        class="round-card"
-        data-round="${i+1}"
-      >
+      <div class="round-card" data-round="${i+1}">
 
         <div class="round-header">
 
@@ -775,11 +952,8 @@ function renderRounds(){
             ${i+1}차 중도금
           </div>
 
-          <div
-            class="round-interest"
-            id="roundInterest${i+1}"
-          >
-            예상이자 -
+          <div class="round-loan">
+            회차별 금리 적용
           </div>
 
         </div>
@@ -789,34 +963,39 @@ function renderRounds(){
 
           <div>
 
-            <label>
-              중도금 납부일
-            </label>
+            <label>대출 실행일</label>
 
             <input
-              class="dateInput"
+              class="round-date"
               type="date"
-              value="${date}"
-              data-round="${i+1}"
-            >
+              value="${date}">
 
           </div>
 
 
           <div>
 
-            <label>
-              적용 대출금리 (연 %)
-            </label>
+            <label>대출 금리 (연 %)</label>
 
             <input
-              class="rateInput"
+              class="round-rate"
               type="number"
               value="4.55"
               step="0.01"
-              min="0"
-              data-round="${i+1}"
-            >
+              min="0">
+
+          </div>
+
+
+          <div>
+
+            <label>회차 대출금</label>
+
+            <input
+              class="round-loan-display"
+              type="text"
+              value="-"
+              readonly>
 
           </div>
 
@@ -832,27 +1011,25 @@ function renderRounds(){
             </span>
 
             <button
-              class="add-btn"
               type="button"
-              onclick="addRepayment(${i+1})"
-            >
-              + 중도상환
+              class="add-btn"
+              onclick="addRepayment(${i+1})">
+
+              + 중도상환 추가
+
             </button>
 
           </div>
 
 
           <div
-            class="repayment-list"
-            id="repaymentList${i+1}"
-          ></div>
+            class="repayments"
+            id="repayments-${i+1}">
 
+            <div class="repayment-empty">
+              중도상환이 없으면 입력하지 않아도 됩니다.
+            </div>
 
-          <div
-            class="round-summary"
-            id="roundSummary${i+1}"
-          >
-            중도상환 없음
           </div>
 
         </div>
@@ -861,37 +1038,37 @@ function renderRounds(){
 
     `;
 
-
-    container.insertAdjacentHTML(
-      "beforeend",
-      html
-    );
-
   }
 
 
-  attachEvents();
-
+  updateLoanDisplays();
   calculate();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    중도상환 추가
-========================================================= */
+===================================================== */
 
-function addRepayment(round){
+function addRepayment(roundNo){
 
-  const list =
+  const box =
     document.getElementById(
-      "repaymentList" + round
+      "repayments-" + roundNo
     );
+
+
+  const empty =
+    box.querySelector(".repayment-empty");
+
+  if(empty){
+    empty.remove();
+  }
 
 
   const row =
     document.createElement("div");
-
 
   row.className =
     "repayment-row";
@@ -900,53 +1077,62 @@ function addRepayment(round){
   row.innerHTML = `
 
     <input
-      type="date"
       class="repayment-date"
-      data-round="${round}"
-    >
+      type="date"
+      onchange="calculate()">
 
     <input
-      type="number"
       class="repayment-amount"
-      data-round="${round}"
+      type="number"
       placeholder="상환금액"
       min="0"
-      step="100000"
-    >
+      step="10000"
+      oninput="calculate()">
 
     <button
       type="button"
-      class="remove-btn"
-      onclick="removeRepayment(this)"
-      title="삭제"
-    >
+      class="delete-btn"
+      onclick="removeRepayment(this)">
+
       ×
+
     </button>
 
   `;
 
 
-  list.appendChild(row);
-
-
-  attachEvents();
+  box.appendChild(row);
 
   calculate();
 
 }
 
 
-/* =========================================================
+/* =====================================================
    중도상환 삭제
-========================================================= */
+===================================================== */
 
-function removeRepayment(button){
+function removeRepayment(btn){
 
-  const row =
-    button.parentElement;
+  const box =
+    btn.closest(".repayments");
+
+  btn.closest(".repayment-row").remove();
 
 
-  row.remove();
+  if(
+    box.querySelectorAll(".repayment-row").length === 0
+  ){
+
+    box.innerHTML = `
+
+      <div class="repayment-empty">
+        중도상환이 없으면 입력하지 않아도 됩니다.
+      </div>
+
+    `;
+
+  }
 
 
   calculate();
@@ -954,302 +1140,96 @@ function removeRepayment(button){
 }
 
 
-/* =========================================================
-   이벤트 연결
-========================================================= */
+/* =====================================================
+   회차별 대출금 표시
+===================================================== */
 
-function attachEvents(){
+function updateLoanDisplays(){
 
-  document
-    .querySelectorAll(
-      "input"
-    )
-    .forEach(
-      el => {
+  const price =
+    Number(
+      document.getElementById("price").value
+    ) || 0;
 
-        el.removeEventListener(
-          "input",
-          calculate
-        );
+  const middleRate =
+    Number(
+      document.getElementById("middleRate").value
+    ) || 0;
 
-        el.addEventListener(
-          "input",
-          calculate
-        );
-
-      }
+  const rounds =
+    Math.max(
+      1,
+      Math.min(
+        10,
+        Number(
+          document.getElementById("rounds").value
+        ) || 6
+      )
     );
 
 
+  const middle =
+    price * middleRate / 100;
+
+  const each =
+    middle / rounds;
+
+
   document
-    .querySelectorAll(
-      ".dateInput,.rateInput,.repayment-date,.repayment-amount"
-    )
-    .forEach(
-      el => {
+    .querySelectorAll(".round-loan-display")
+    .forEach(input=>{
 
-        el.removeEventListener(
-          "change",
-          calculate
-        );
+      input.value =
+        price > 0
+        ? won(each)
+        : "-";
 
-        el.addEventListener(
-          "change",
-          calculate
-        );
-
-      }
-    );
+    });
 
 }
 
 
-/* =========================================================
-   회차별 이자 계산
+/* =====================================================
+   핵심 이자 계산
+=====================================================
 
-   핵심 계산 방식
+   계산 방식:
 
-   1. 중도금 실행일부터 시작
-   2. 중도상환일까지 기존 원금에 이자
-   3. 중도상환금액 차감
-   4. 다음 중도상환일까지 감소된 원금에 이자
-   5. 잔금일까지 반복
-========================================================= */
+   대출 실행일
+       ↓
+   첫 번째 중도상환일까지
+       → 기존 대출잔액 × 금리 × 일수 / 365
 
-function calculateRoundInterest(
-  principal,
-  loanDate,
-  rate,
-  endDate,
-  repayments
-){
+   첫 번째 중도상환
+       ↓
+   상환금액만큼 잔액 감소
 
-  if(
-    !principal ||
-    !loanDate ||
-    !endDate ||
-    !rate
-  ){
-    return 0;
-  }
+   두 번째 중도상환일까지
+       → 감소된 잔액 × 금리 × 일수 / 365
 
+   ...
+       ↓
+   잔금/입주일까지
 
-  /*
-    중도상환 내역 정리
-
-    날짜가 없는 항목은 제외
-  */
-
-  let events =
-    repayments
-      .filter(
-        r =>
-          r.date &&
-          Number(r.amount) > 0
-      )
-      .map(
-        r => ({
-          date:r.date,
-          amount:Number(r.amount)
-        })
-      )
-      .sort(
-        (a,b) =>
-          a.date.localeCompare(
-            b.date
-          )
-      );
-
-
-  let currentPrincipal =
-    principal;
-
-
-  let currentDate =
-    loanDate;
-
-
-  let totalInterest =
-    0;
-
-
-  /*
-    중도상환금액이 원금보다 커지는 것을 방지
-
-    예:
-
-    대출 8,950만원
-    중도상환 1억원
-
-    실제 계산상으로는 원금까지만 상환
-  */
-
-  for(
-    let i=0;
-    i<events.length;
-    i++
-  ){
-
-    const event =
-      events[i];
-
-
-    /*
-      대출 실행일보다 이전에
-      중도상환한 경우는 무시
-    */
-
-    if(
-      event.date <= currentDate
-    ){
-
-      if(
-        event.date === currentDate
-      ){
-
-        currentPrincipal =
-          Math.max(
-            0,
-            currentPrincipal -
-            event.amount
-          );
-
-      }
-
-      continue;
-
-    }
-
-
-    /*
-      잔금일 이후의 상환은
-      계산에 필요하지 않음
-    */
-
-    if(
-      event.date >= endDate
-    ){
-
-      break;
-
-    }
-
-
-    /*
-      현재 날짜부터
-      중도상환일까지 이자 계산
-    */
-
-    const days =
-      dateDiff(
-        currentDate,
-        event.date
-      );
-
-
-    totalInterest +=
-      currentPrincipal *
-      (rate / 100) *
-      days /
-      365;
-
-
-    /*
-      중도상환 실행
-    */
-
-    currentPrincipal =
-      Math.max(
-        0,
-        currentPrincipal -
-        event.amount
-      );
-
-
-    /*
-      다음 구간 시작일
-    */
-
-    currentDate =
-      event.date;
-
-
-    /*
-      원금이 모두 상환되었다면
-      더 이상 이자가 발생하지 않음
-    */
-
-    if(
-      currentPrincipal <= 0
-    ){
-
-      currentPrincipal = 0;
-
-      break;
-
-    }
-
-  }
-
-
-  /*
-    마지막 중도상환 이후
-    잔금일까지 계산
-  */
-
-  if(
-    currentPrincipal > 0 &&
-    currentDate < endDate
-  ){
-
-    const days =
-      dateDiff(
-        currentDate,
-        endDate
-      );
-
-
-    totalInterest +=
-      currentPrincipal *
-      (rate / 100) *
-      days /
-      365;
-
-  }
-
-
-  return totalInterest;
-
-}
-
-
-/* =========================================================
-   전체 계산
-========================================================= */
+===================================================== */
 
 function calculate(){
 
   const price =
     Number(
-      document.getElementById(
-        "price"
-      ).value
+      document.getElementById("price").value
     ) || 0;
 
 
   const contractRate =
     Number(
-      document.getElementById(
-        "contractRate"
-      ).value
+      document.getElementById("contractRate").value
     ) || 0;
 
 
   const middleRate =
     Number(
-      document.getElementById(
-        "middleRate"
-      ).value
+      document.getElementById("middleRate").value
     ) || 0;
 
 
@@ -1259,255 +1239,238 @@ function calculate(){
       Math.min(
         10,
         Number(
-          document.getElementById(
-            "rounds"
-          ).value
+          document.getElementById("rounds").value
         ) || 6
       )
     );
 
 
-  const endDate =
-    document.getElementById(
-      "endDate"
-    ).value;
+  const end =
+    document.getElementById("endDate").value;
 
 
-  /*
-    기본 금액
-  */
+  const feeRate =
+    Number(
+      document.getElementById("prepayFeeRate").value
+    ) || 0;
+
 
   const contract =
-    price *
-    contractRate /
-    100;
+    price * contractRate / 100;
 
 
   const middle =
-    price *
-    middleRate /
-    100;
+    price * middleRate / 100;
 
 
   const each =
     rounds > 0
-      ? middle / rounds
-      : 0;
+    ? middle / rounds
+    : 0;
 
 
   const balanceRate =
-    100 -
-    contractRate -
-    middleRate;
+    100 - contractRate - middleRate;
 
 
-  document.getElementById(
-    "contractAmt"
-  ).textContent =
-    price
-      ? won(contract)
-      : "-";
+  document.getElementById("contractAmt")
+    .textContent = won(contract);
 
 
-  document.getElementById(
-    "middleAmt"
-  ).textContent =
-    price
-      ? won(middle)
-      : "-";
+  document.getElementById("middleAmt")
+    .textContent = won(middle);
 
 
-  document.getElementById(
-    "balanceRate"
-  ).textContent =
-    balanceRate
-      .toFixed(1)
-      .replace(".0","") +
-    "%";
+  document.getElementById("balanceRate")
+    .textContent =
+      balanceRate.toFixed(1)
+      .replace(".0","") + "%";
 
 
-  /*
-    결과 테이블
-  */
-
-  const rows =
-    document.getElementById(
-      "rows"
-    );
+  updateLoanDisplays();
 
 
-  rows.innerHTML = "";
+  const data =
+    getRoundData();
 
 
   let totalInterest = 0;
+  let totalRepayment = 0;
+  let totalFee = 0;
+
+  let rowsHTML = "";
+  let printHTML = "";
 
 
-  /*
-    분양가가 입력되지 않은 경우
+  data.forEach(round=>{
 
-    회차별 입력 화면은 유지하고
-    결과만 표시
-  */
+    let balance = each;
 
-  if(!price){
+    let interest = 0;
 
-    for(
-      let i=0;
-      i<rounds;
-      i++
-    ){
+    let lastDate = round.date;
 
-      rows.innerHTML += `
+    let repaymentTotal = 0;
 
-        <tr>
+    let repaymentDetails = [];
 
-          <td>
-            ${i+1}차
-          </td>
 
-          <td>
-            -
-          </td>
+    /*
+      상환일을 날짜순으로 정렬
+    */
 
-          <td>
-            -
-          </td>
-
-          <td>
-            -
-          </td>
-
-          <td>
-            -
-          </td>
-
-        </tr>
-
-      `;
-
-      const interestEl =
-        document.getElementById(
-          "roundInterest" +
-          (i+1)
+    const repayments =
+      round.repayments
+        .filter(r=>
+          r.date &&
+          r.amount > 0
+        )
+        .sort((a,b)=>
+          new Date(a.date) -
+          new Date(b.date)
         );
 
-      if(interestEl){
 
-        interestEl.textContent =
-          "예상이자 -";
+    /*
+      대출 실행일이 없으면 계산하지 않음
+    */
+
+    if(
+      round.date &&
+      end &&
+      balance > 0
+    ){
+
+      repayments.forEach(rep=>{
+
+        /*
+          대출 실행일보다 빠른 상환은 무시
+        */
+
+        if(
+          new Date(rep.date) <
+          new Date(round.date)
+        ){
+          return;
+        }
+
+
+        /*
+          잔금일 이후 상환은
+          이자 계산에 반영하지 않음
+        */
+
+        if(
+          new Date(rep.date) >
+          new Date(end)
+        ){
+          return;
+        }
+
+
+        const days =
+          dateDiff(
+            lastDate,
+            rep.date
+          );
+
+
+        /*
+          상환 전 잔액에 대한 이자
+        */
+
+        interest +=
+          balance *
+          (round.rate / 100) *
+          days /
+          365;
+
+
+        /*
+          실제 상환액은
+          남은 대출잔액까지만 적용
+        */
+
+        const actualRepayment =
+          Math.min(
+            rep.amount,
+            balance
+          );
+
+
+        balance -=
+          actualRepayment;
+
+
+        repaymentTotal +=
+          actualRepayment;
+
+
+        totalRepayment +=
+          actualRepayment;
+
+
+        /*
+          중도상환수수료
+        */
+
+        totalFee +=
+          actualRepayment *
+          (feeRate / 100);
+
+
+        repaymentDetails.push({
+
+          date:rep.date,
+
+          amount:actualRepayment
+
+        });
+
+
+        lastDate =
+          rep.date;
+
+
+        /*
+          대출잔액이 0이면
+          더 이상 이자 발생하지 않음
+        */
+
+        if(balance <= 0){
+
+          balance = 0;
+
+          return;
+
+        }
+
+      });
+
+
+      /*
+        마지막 상환 이후
+        잔금일까지 이자 계산
+      */
+
+      if(balance > 0){
+
+        const days =
+          dateDiff(
+            lastDate,
+            end
+          );
+
+
+        interest +=
+          balance *
+          (round.rate / 100) *
+          days /
+          365;
 
       }
 
     }
-
-
-    document.getElementById(
-      "totalInterest"
-    ).textContent =
-      "-";
-
-
-    updateSummaries();
-
-    return;
-
-  }
-
-
-  /*
-    각 회차 계산
-  */
-
-  for(
-    let i=0;
-    i<rounds;
-    i++
-  ){
-
-    const round =
-      i + 1;
-
-
-    const dateInput =
-      document.querySelector(
-        `.dateInput[data-round="${round}"]`
-      );
-
-
-    const rateInput =
-      document.querySelector(
-        `.rateInput[data-round="${round}"]`
-      );
-
-
-    const loanDate =
-      dateInput
-        ? dateInput.value
-        : "";
-
-
-    const rate =
-      rateInput
-        ? Number(rateInput.value) || 0
-        : 0;
-
-
-    /*
-      해당 회차 중도상환 내역
-    */
-
-    const repaymentDates =
-      [
-        ...document.querySelectorAll(
-          `.repayment-date[data-round="${round}"]`
-        )
-      ];
-
-
-    const repaymentAmounts =
-      [
-        ...document.querySelectorAll(
-          `.repayment-amount[data-round="${round}"]`
-        )
-      ];
-
-
-    const repayments = [];
-
-
-    for(
-      let j=0;
-      j<repaymentDates.length;
-      j++
-    ){
-
-      repayments.push({
-
-        date:
-          repaymentDates[j].value,
-
-        amount:
-          Number(
-            repaymentAmounts[j].value
-          ) || 0
-
-      });
-
-    }
-
-
-    /*
-      실제 이자 계산
-    */
-
-    const interest =
-      calculateRoundInterest(
-        each,
-        loanDate,
-        rate,
-        endDate,
-        repayments
-      );
 
 
     totalInterest +=
@@ -1515,46 +1478,29 @@ function calculate(){
 
 
     /*
-      화면 표시
+      화면용 표
     */
 
-    const roundInterestEl =
-      document.getElementById(
-        "roundInterest" +
-        round
-      );
-
-
-    if(roundInterestEl){
-
-      roundInterestEl.textContent =
-        "예상이자 " +
-        won(interest);
-
-    }
-
-
-    rows.innerHTML += `
+    rowsHTML += `
 
       <tr>
 
+        <td>${round.index}차</td>
+
         <td>
-          ${round}차
+          ${formatDate(round.date)}
         </td>
 
         <td>
-          ${loanDate || "-"}
-        </td>
-
-        <td>
-          ${rate
-            ? rate.toFixed(2) + "%"
-            : "-"
-          }
+          ${round.rate.toFixed(2)}%
         </td>
 
         <td class="money">
           ${won(each)}
+        </td>
+
+        <td class="money">
+          ${won(repaymentTotal)}
         </td>
 
         <td class="interest">
@@ -1565,117 +1511,175 @@ function calculate(){
 
     `;
 
+
+    /*
+      인쇄용 상환 내역
+    */
+
+    let repaymentText = "";
+
+    if(
+      repaymentDetails.length === 0
+    ){
+
+      repaymentText =
+        "중도상환 없음";
+
+    }else{
+
+      repaymentText =
+        repaymentDetails.map(r=>{
+
+          return `
+            <div>
+              ${formatDate(r.date)}
+              · ${won(r.amount)}
+            </div>
+          `;
+
+        }).join("");
+
+    }
+
+
+    printHTML += `
+
+      <tr>
+
+        <td>
+          ${round.index}차
+        </td>
+
+        <td class="repayment-summary">
+          ${repaymentText}
+        </td>
+
+        <td class="money">
+          ${won(balance)}
+        </td>
+
+      </tr>
+
+    `;
+
+  });
+
+
+  document.getElementById("rows")
+    .innerHTML = rowsHTML;
+
+
+  document.getElementById("printRepaymentRows")
+    .innerHTML = printHTML;
+
+
+  document.getElementById("totalInterest")
+    .textContent =
+      won(totalInterest);
+
+
+  /*
+    중도상환수수료가 있는 경우
+    총 이자 아래에 표시
+  */
+
+  let feeElement =
+    document.getElementById("feeResult");
+
+
+  if(!feeElement){
+
+    feeElement =
+      document.createElement("div");
+
+    feeElement.id =
+      "feeResult";
+
+    feeElement.style.cssText =
+      "font-size:11px;color:#8992a1;text-align:right;margin-top:6px;";
+
+    document
+      .getElementById("totalInterest")
+      .parentElement
+      .after(feeElement);
+
   }
 
 
-  document.getElementById(
-    "totalInterest"
-  ).textContent =
-    won(totalInterest);
+  feeElement.innerHTML =
 
+    totalFee > 0
 
-  updateSummaries();
+    ? `중도상환수수료 예상액: <b>${won(totalFee)}</b>
+       · 이자+수수료: <b>${won(totalInterest + totalFee)}</b>`
+
+    : "";
+
 
 }
 
 
-/* =========================================================
-   회차별 중도상환 요약
-========================================================= */
+/* =====================================================
+   PDF / 인쇄
+===================================================== */
 
-function updateSummaries(){
+function printPDF(){
 
-  const roundCards =
-    document.querySelectorAll(
-      ".round-card"
-    );
+  calculate();
 
+  /*
+    브라우저 인쇄창에서
+    "PDF로 저장"을 선택하면 PDF 파일 생성 가능
+  */
 
-  roundCards.forEach(
-    card => {
+  setTimeout(()=>{
 
-      const round =
-        card.dataset.round;
+    window.print();
 
-
-      const amounts =
-        [
-          ...card.querySelectorAll(
-            ".repayment-amount"
-          )
-        ]
-        .map(
-          el =>
-            Number(el.value) || 0
-        )
-        .filter(
-          n => n > 0
-        );
-
-
-      const summary =
-        document.getElementById(
-          "roundSummary" +
-          round
-        );
-
-
-      if(!summary){
-        return;
-      }
-
-
-      if(amounts.length === 0){
-
-        summary.innerHTML =
-          "중도상환 없음";
-
-        return;
-
-      }
-
-
-      const total =
-        amounts.reduce(
-          (a,b) => a+b,
-          0
-        );
-
-
-      summary.innerHTML =
-
-        "중도상환 횟수: " +
-        `<b>${amounts.length}회</b>` +
-        "　 / 　중도상환 합계: " +
-        `<b>${won(total)}</b>`;
-
-    }
-  );
+  },100);
 
 }
 
 
-/* =========================================================
-   회차 수 변경
-========================================================= */
+/* =====================================================
+   이벤트
+===================================================== */
 
 document
   .getElementById("rounds")
   .addEventListener(
     "change",
-    function(){
-
+    ()=>{
       renderRounds();
-
     }
   );
 
 
-/* =========================================================
+document
+  .querySelectorAll(
+    "#price,#contractRate,#middleRate,#prepayFeeRate,#endDate"
+  )
+  .forEach(el=>{
+
+    el.addEventListener(
+      "input",
+      calculate
+    );
+
+    el.addEventListener(
+      "change",
+      calculate
+    );
+
+  });
+
+
+/* =====================================================
    최초 실행
-========================================================= */
+===================================================== */
 
 renderRounds();
+calculate();
 
 </script>
 
